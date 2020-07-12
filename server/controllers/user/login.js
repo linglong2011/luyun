@@ -1,7 +1,10 @@
 // 引入 token 生成模块
 var jwt = require('jsonwebtoken')
-// 全局密钥
-const SECRET = 'miyaodalfdla;fj'
+// 导入config模块
+const config = require('config');
+// 获取全局密钥
+const SECRET = config.get('SECRET')
+
 module.exports = (req, res) => {
   const { username, password } = req.body;
   console.log('oo');

@@ -77,7 +77,7 @@ export default {
         // 调用mutations中的方法，将token写入state及本地缓存
         this.$store.commit('setUser', res.data)
         // 2、通过编程式导航跳转到后台主页，路由地址是 /home
-        this.$router.push('/manager')
+        this.$router.push('/admin')
       })
     }
   },

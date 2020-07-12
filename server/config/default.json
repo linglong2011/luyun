@@ -1,0 +1,12 @@
+{
+	"system_name" : "future",
+	"db_config" : {
+		"protocol" : "mysql",
+		"user" : "root",
+		"password" : "root",
+		"host" : "127.0.0.1",
+		"port" : 3307,
+		"database" : "future"
+	},
+	"SECRET": "miyaodalfdla;fj"
+}

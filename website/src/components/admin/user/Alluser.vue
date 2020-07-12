@@ -1,7 +1,7 @@
 <template>
    <div class=''>
      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/manager/welcome' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/welcome' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
@@ -64,7 +64,7 @@ export default {
   props: [''],
   methods: {
     goRegister () {
-      this.$router.push('/manager/register')
+      this.$router.push('/admin/register')
     },
     editById (id) {
       this.$router.push({

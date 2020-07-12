@@ -28,11 +28,11 @@
                 background-color="#354052"
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <el-menu-item index="/manager/alluser">
+                <el-menu-item index="/admin/alluser">
                     <i class="el-icon-menu"></i>
                     <span slot="title">用户中心</span>
                 </el-menu-item>
-                <el-menu-item index="/manager/addarticle">
+                <el-menu-item index="/admin/addarticle">
                     <i class="el-icon-menu"></i>
                     <span slot="title">添加文章</span>
                 </el-menu-item>

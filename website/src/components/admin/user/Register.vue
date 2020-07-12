@@ -2,14 +2,17 @@
    <div class='userRegister'>
      <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/manager/register' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>用户信息修改</el-breadcrumb-item>
+        <el-breadcrumb-item>用户注册</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
       <el-row :gutter="20">
         <el-col :span="12" :offset="6">
           <el-form ref="registerFormRef" :rules="registerFormRules" :model="registerForm" label-width="120px">
-            <el-form-item label="用户名">
+            <el-form-item label="用户名" prop="username">
               <el-input v-model="registerForm.username"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <el-input v-model="registerForm.password" show-password></el-input>
             </el-form-item>
             <el-form-item label="用户头像">
               <el-upload class="avatar-uploader"
@@ -22,7 +25,7 @@
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
-            <el-form-item label="国家">
+            <el-form-item label="国家" >
               <el-select v-model="registerForm.country" placeholder="请选择所在国家">
                 <el-option label="中国" value="China"></el-option>
                 <el-option label="美国" value="USA"></el-option>
@@ -54,7 +57,7 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit">保存</el-button>
-              <el-button>取消</el-button>
+              <el-button @click="resetForm">取消</el-button>
             </el-form-item>
           </el-form>
         </el-col>
@@ -63,7 +66,6 @@
    </div>
 </template>
 <script>
-import _ from 'lodash'
 export default {
   name: '',
   components: {},
@@ -78,21 +80,14 @@ export default {
         Authorization: window.sessionStorage.getItem('token')
       },
       registerForm: {
-        // 用户名
         username: '',
-        // 用户头像
+        password: '',
         avatarUrl: '',
-        // 所在省份
-        country: '',
-        // 出生时间
+        country: 'China',
         birth: '',
-        // 是否立即启用
-        state: null,
-        // 爱好
+        state: true,
         hobby: [],
-        // 性别
         sex: '',
-        // 简介
         desc: ''
       },
       // 为表单添加验证规则
@@ -100,10 +95,12 @@ export default {
         // 验证用户名是否合法
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+          { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
         ],
-        country: [
-          { required: true, message: '请选择省份', trigger: 'blur' }
+        // 验证密码是否合法
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }
         ]
       }
     }
@@ -111,8 +108,7 @@ export default {
   props: [''],
   methods: {
     handleAvatarSuccess (res, file) {
-      console.log('123')
-      console.log(file.response)
+      console.log(file.response.filesPath)
       this.tempImageUrl = URL.createObjectURL(file.raw)
       // this.tempImageUrl = 'http://localhost:3000' + file.response.filesPath
       // sessionStorage.setItem('sessionAvatar', URL.createObjectURL(file.raw))
@@ -133,33 +129,25 @@ export default {
     },
     onSubmit () {
       this.$refs.registerFormRef.validate(async valid => {
+        console.log('8888')
         if (!valid) return
-        const form = _.cloneDeep(this.registerForm)
-        form.hobby = form.hobby.join(',')
+        this.registerForm.hobby = this.registerForm.hobby.join(',')
         console.log(this.registerForm)
-        const { data: res } = await this.$http.put('/admin/editusers/' + this.$route.params.id, form)
+        const { data: res } = await this.$http.post('/admin/register', this.registerForm)
         console.log(res)
         if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
         this.$message.success(res.meta.msg)
-        this.$router.push('/manager/alluser')
+        this.$router.push('/admin/alluser')
       })
     },
-    async getUserById () {
-      const { data: res } = await this.$http.get('/admin/users/' + this.$route.params.id)
-      console.log('头像拿到了员？')
-      console.log(res.data)
-      if (res.meta.status !== 200) return
-      res.data.hobby = res.data.hobby == null ? [] : res.data.hobby.split(',')
-      this.tempImageUrl = this.GLOBAL.BASEURL + res.data.avatarUrl
-      this.registerForm = res.data
+    // 重置表单
+    resetForm () {
+      this.$refs.registerFormRef.resetFields() // elementui中的方法 重置表单项
     }
   },
   computed: {},
   watch: {},
-  created () {
-    // 页面加载时，获取用户信息
-    this.getUserById()
-  },
+  created () {},
   beforeMount () {},
   mounted () {}
 }

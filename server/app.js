@@ -7,6 +7,15 @@ const app = express();
 // 引入orm
 const orm = require('orm')
 
+// 导入config模块
+const config = require('config');
+// 获取数据库配置参数
+const protocol = config.get('db_config.protocol'),
+user = config.get('db_config.user'),
+password = config.get('db_config.password'),
+host = config.get('db_config.host'),
+port = config.get('db_config.port'),
+database = config.get('db_config.database')
 
 //  模版引擎配置
 app.set('view engine', 'ejs')
@@ -29,16 +38,10 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-// 统一设置orm MODEL
-app.use(orm.express("mysql://root:root@localhost:3307/future", {
-  define: function (db, models, next) {
-    // 加载用户模型
-    require('./models/userModel')(db, models)
-    // 加载article模型
-    require('./models/articleModel')(db, models)
-		next();
-	}
-}))
+// 挂载数据库及所有的模型文件
+app.use(orm.express(`${protocol}://${user}:${password}@${host}:${port}/${database}`,
+  {define: require('./models/index')}
+))
 
 // 引入前端路由模块
 const home = require('./routes/home');
@@ -56,8 +59,7 @@ app.get('/', function (req, res){
 
 // 404 处理 所要未处理的请求路径都会在这里处理
 app.use(function(req,res){
-	res.render('404',{
-  })
+	res.render('404',{})
 })
 
 app.listen(3000, () => console.log(`Example app listening on port on http://localhost:3000/ `))

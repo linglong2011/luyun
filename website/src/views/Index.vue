@@ -3,9 +3,6 @@
     <router-link to="/login">
       <el-button type="primary">我要登录</el-button>
     </router-link>
-    <router-link to="register">
-      <el-button type="warning">我要注册</el-button>
-    </router-link>
   </div>
 </template>
 <script>
