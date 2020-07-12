@@ -1,0 +1,77 @@
+/* 全局样式表 */
+*{
+    box-sizing: border-box;
+}
+html,body,#app{
+    height: 100%; padding: 0; margin: 0; min-width: 1300px; 
+}
+a{
+    text-decoration: none; 
+}
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+.clearfix{
+    clear: both; height: 1px; overflow: hidden;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.shadow{
+    box-shadow: 0 0 15px rgba(180,180,180,0.8)
+}
+.radius-50{
+    border-radius: 50%;
+}
+/* 重定义面包屑导航与下面的距离 */
+.el-breadcrumb{
+    margin-bottom: 15px;
+}
+/* 重定义简单卡片的阴影 */
+.el-card{
+    box-shadow: 0 0 1px rgba(0,0,0,0.15)!important;
+}
+.el-table{
+    margin-top: 15px;
+}
+.el-pagination{
+    margin-top: 15px;
+}
+.el-steps{
+    margin: 15px 0;
+}
+.el-step__title{
+    font-size: 14px;
+}
+.ql-editor{
+    min-height: 300px;
+}
+.avatar-uploader .el-upload {
+border: 1px dashed #d9d9d9;
+border-radius: 6px;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+border-color: #409EFF;
+}
+.avatar-uploader-icon {
+font-size: 28px;
+color: #8c939d;
+width: 178px;
+height: 178px;
+line-height: 178px;
+text-align: center;
+}
+.avatar {
+width: 178px;
+height: 178px;
+display: block;
+}
