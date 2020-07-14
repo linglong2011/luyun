@@ -1,4 +1,4 @@
-// 将路由对象做为模块成员进行导出
+// 定义user模块
 module.exports = function (db, models) {
   models.userModel = db.define("user", {
     id: { type: 'serial', key: true },
@@ -12,5 +12,4 @@ module.exports = function (db, models) {
     hobby: String,
     desc: String
   })
-  
 };

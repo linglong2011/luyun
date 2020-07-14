@@ -1,5 +1,6 @@
 module.exports = (req, res) => {
   var { username, password, avatarUrl, country, sex, birth, state, hobby, desc } = req.body;
+  console.log(req.body);
   if (avatarUrl == '') {
     avatarUrl = '/public/upload/defaultavatar.jpg'
   }

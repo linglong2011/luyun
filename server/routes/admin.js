@@ -30,5 +30,11 @@ admin.delete("/deleteusers/:id", require('../controllers/user/deleteUserById'));
 // 头像上传
 admin.post("/avatarupload", require('../controllers/user/avatarupload'));
 
+// 添加栏目
+admin.post("/block/add", jsonParser, require('../controllers/block/add'));
+
+// 栏目列表
+admin.get("/block/list", require('../controllers/block/list'));
+
 // 将路由对象做为模块成员进行导出
 module.exports = admin;

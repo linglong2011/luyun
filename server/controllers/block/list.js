@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   // 获取信息总数
   function getCount () {
     return new Promise((resolve) => {
-      req.models.userModel.count({}, function (err, count) { 
+      req.models.blockModel.count({}, function (err, count) { 
         resolve(count);
       })
     })
@@ -21,14 +21,15 @@ module.exports = async (req, res) => {
   console.log('当前页' + page);
   console.log('一页显示几条：' +  pagesize);
   console.log('start' + start);
-  req.models.userModel.find({}).limit(pagesize).offset(start).run(function (err, user) {
+  req.models.blockModel.find({}).limit(pagesize).offset(start).run(function (err, list) {
+    console.log(list);
     res.json({
       totalpage: totalpage,
       total: total,
       page: page,
-      data: user,
+      data: list,
       meta: {
-        msg: '获取用户成功',
+        msg: '获取栏目成功',
         status: 200
       }
     });

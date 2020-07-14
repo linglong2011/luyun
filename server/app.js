@@ -10,12 +10,7 @@ const orm = require('orm')
 // 导入config模块
 const config = require('config');
 // 获取数据库配置参数
-const protocol = config.get('db_config.protocol'),
-user = config.get('db_config.user'),
-password = config.get('db_config.password'),
-host = config.get('db_config.host'),
-port = config.get('db_config.port'),
-database = config.get('db_config.database')
+const protocol = config.get('db_config.protocol'), user = config.get('db_config.user'), password = config.get('db_config.password'), host = config.get('db_config.host'), port = config.get('db_config.port'), database = config.get('db_config.database')
 
 //  模版引擎配置
 app.set('view engine', 'ejs')
@@ -32,7 +27,6 @@ app.all('*', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json;charset=utf-8')
   res.setHeader('Content-Type', 'multipart/form-data')
   res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
-  // res.header('Access-Control-Allow-Headers', 'multipart/form-data;charset=utf-8')
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
   res.header('X-Powered-By', ' 3.2.1')
   next();
@@ -53,8 +47,8 @@ const admin = require('./routes/admin');
 app.use('/home', home);
 app.use('/admin', admin);
 
-app.get('/', function (req, res){
-    res.send('Hello World by Express');
+app.get("/", function (req, res) {
+    res.send('888');
 });
 
 // 404 处理 所要未处理的请求路径都会在这里处理
@@ -62,4 +56,5 @@ app.use(function(req,res){
 	res.render('404',{})
 })
 
-app.listen(3000, () => console.log(`Example app listening on port on http://localhost:3000/ `))
+// 设置监听端口
+app.listen(3000, () => console.log('Example app listening on port on http://localhost:3000/ '))
