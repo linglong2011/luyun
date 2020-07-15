@@ -11,8 +11,12 @@ module.exports = async (req, res) => {
   function getCount () {
     return new Promise((resolve) => {
       if (query) {
-        req.models.blockModel.count({ block_name : query }, function (err, count) { 
-          resolve(count);
+        // req.models.blockModel.count({ block_name : query }, function (err, count) { 
+        //   resolve(count);
+        // })
+        req.models.blockModel.find({}).where("block_name LIKE ?", ['%' + query + '%']).run(function (err, list) {
+          console.log(list.length);
+          resolve(list.length);
         })
       } else {
         req.models.blockModel.count({ }, function (err, count) { 
@@ -29,9 +33,9 @@ module.exports = async (req, res) => {
   console.log('当前页' + page);
   console.log('一页显示几条：' +  pagesize);
   console.log('start' + start);
-
+  
   if (query) {
-    req.models.blockModel.find({ block_name : query }).limit(pagesize).offset(start).run(function (err, list) {
+    req.models.blockModel.find({}).where("block_name LIKE ?", ['%'+query+'%']).limit(pagesize).offset(start).run(function (err, list) {
       console.log(list);
       res.json({
         totalpage: totalpage,
@@ -59,5 +63,4 @@ module.exports = async (req, res) => {
       });
     })
   }
-  
 }
