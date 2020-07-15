@@ -47,6 +47,21 @@ const router = new VueRouter({
           path: '/admin/addarticle',
           name: 'AddArticle',
           component: () => import('../components/admin/article/AddArticle.vue')
+        },
+        {
+          path: '/admin/block/list',
+          name: 'List',
+          component: () => import('../components/admin/block/list.vue')
+        },
+        {
+          path: '/admin/block/add',
+          name: 'Add',
+          component: () => import('../components/admin/block/add.vue')
+        },
+        {
+          path: '/admin/block/edit/:id',
+          name: 'EditBlock',
+          component: () => import('../components/admin/block/edit.vue')
         }
       ]
     },

@@ -82,9 +82,9 @@ export default {
       if (confirmResult !== 'confirm') return this.$message.info('您已取消了删除用户的操作。')
       const res = await this.$http.delete('/admin/deleteusers/' + id)
       console.log(res)
-      this.$message.success('删除成功！')
       // 删除成功后，重新加载用户信息
       this.getUserList()
+      this.$message.success('删除成功！')
     },
     async getUserList () {
       const { data: res } = await this.$http.get('/admin/alluser', { params: this.queryInfo })

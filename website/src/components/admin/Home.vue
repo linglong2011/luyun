@@ -29,12 +29,16 @@
                 text-color="#fff"
                 active-text-color="#ffd04b">
                 <el-menu-item index="/admin/alluser">
+                    <i class="el-icon-s-custom"></i>
+                    <span slot="title">用户管理</span>
+                </el-menu-item>
+                <el-menu-item index="/admin/block/list">
                     <i class="el-icon-menu"></i>
-                    <span slot="title">用户中心</span>
+                    <span slot="title">栏目管理</span>
                 </el-menu-item>
                 <el-menu-item index="/admin/addarticle">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">添加文章</span>
+                    <i class="el-icon-document"></i>
+                    <span slot="title">文章管理</span>
                 </el-menu-item>
             </el-menu>
         </el-aside>
