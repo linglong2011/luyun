@@ -7,13 +7,10 @@ module.exports = async (req, res) => {
   var pagesize = req.query.pagesize - 0
   // 起始页
   let start = (page - 1) * pagesize
-  // 获取信息总数
+  // 获取信息总数 如果存在关键字，则需要先进行模糊查询，再获取总数
   function getCount () {
     return new Promise((resolve) => {
       if (query) {
-        // req.models.blockModel.count({ block_name : query }, function (err, count) { 
-        //   resolve(count);
-        // })
         req.models.blockModel.find({}).where("block_name LIKE ?", ['%' + query + '%']).run(function (err, list) {
           console.log(list.length);
           resolve(list.length);
@@ -33,7 +30,7 @@ module.exports = async (req, res) => {
   console.log('当前页' + page);
   console.log('一页显示几条：' +  pagesize);
   console.log('start' + start);
-  
+  // 如果存在关键字，则需要进行模糊查询
   if (query) {
     req.models.blockModel.find({}).where("block_name LIKE ?", ['%'+query+'%']).limit(pagesize).offset(start).run(function (err, list) {
       console.log(list);

@@ -1,7 +1,7 @@
-// 引用expess框架
+// 引用expess
 const express = require('express');
 
-// 创建网站服务器
+// 创建服务器
 const app = express();
 
 // 引入orm
@@ -47,8 +47,8 @@ const admin = require('./routes/admin');
 app.use('/home', home);
 app.use('/admin', admin);
 
-app.get("/", function (req, res) {
-    res.send('888');
+app.get('/', function (req, res) {
+    res.send('7');
 });
 
 // 404 处理 所要未处理的请求路径都会在这里处理

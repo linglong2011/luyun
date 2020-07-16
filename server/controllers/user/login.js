@@ -7,7 +7,6 @@ const SECRET = config.get('SECRET')
 
 module.exports = (req, res) => {
   const { username, password } = req.body;
-  console.log('oo');
   console.log(req.body);
   req.models.userModel.one({ username:username }, function (err, user) {
     if (err) {
@@ -46,6 +45,7 @@ module.exports = (req, res) => {
       data: {
         id: user.id,
         username: user.username,
+        avatarUrl: user.avatarUrl,
         token: token
       },
       meta: {
