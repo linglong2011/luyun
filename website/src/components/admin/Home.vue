@@ -6,8 +6,8 @@
             FUTURE
         </span>
         <div class="pull-right top-user">
-            <img src="../../assets/img/avatar.jpg" class="avatar shadow radius-50 pull-left" alt="">
-            {{ user_name }}
+            <img :src="avatarUrl" class="avatar shadow radius-50 pull-left" alt="">
+            {{ username }}
             <el-button size="mini" type="danger" @click="logout" icon="el-icon-switch-button" circle></el-button>
         </div>
     </el-header>
@@ -36,7 +36,7 @@
                     <i class="el-icon-menu"></i>
                     <span slot="title">栏目管理</span>
                 </el-menu-item>
-                <el-menu-item index="/admin/addarticle">
+                <el-menu-item index="/admin/article/add">
                     <i class="el-icon-document"></i>
                     <span slot="title">文章管理</span>
                 </el-menu-item>
@@ -58,8 +58,7 @@ export default {
   data () {
     return {
       // 左侧菜单默认折叠状态
-      isCollapse: '',
-      username: ''
+      isCollapse: ''
     }
   },
   props: [''],
@@ -82,12 +81,13 @@ export default {
   },
   computed: {
     ...mapState({
-      user_name: state => state.username
+      username: state => state.username,
+      avatarUrl: state => state.avatarUrl
     })
   },
   watch: {},
   created () {
-    this.userName = sessionStorage.getItem('username')
+    // this.userName = sessionStorage.getItem('username')
     let isc = sessionStorage.getItem('isCollapse')
     if (isc === 'false') {
       isc = false

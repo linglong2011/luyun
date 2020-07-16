@@ -46,7 +46,7 @@ export default {
         // 验证密码是否合法
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
+          { min: 1, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
         ]
       }
     }
@@ -73,7 +73,7 @@ export default {
         // 1、将登录成功后的token，保存到客户端的 sessionStorage中
         //    1.1 项目中除了登录之外的其他api接口，必须在登录之后才能访问
         //    1.2 token 只应在当前网站打开期间生效，所以将token保存在 sessionStorage中
-        // window.sessionStorage.setItem('token', res.data.token)
+        window.sessionStorage.setItem('token', res.data.token)
         // 调用mutations中的方法，将token写入state及本地缓存
         this.$store.commit('setUser', res.data)
         // 2、通过编程式导航跳转到后台主页，路由地址是 /home

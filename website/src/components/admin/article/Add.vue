@@ -45,12 +45,12 @@ export default {
   data () {
     return {
       articleForm: {
-        title: '新闻标题',
-        auth: '作者',
-        desc: '我是摘要',
-        time: '2020-06-20',
+        title: '',
+        auth: '',
+        desc: '',
+        time: '',
         cover: '',
-        content: '我是内容'
+        content: ''
       },
       // 为表单添加验证规则
       articleFormRules: {

@@ -44,24 +44,24 @@ const router = new VueRouter({
           component: () => import('../components/admin/user/EditUser.vue')
         },
         {
-          path: '/admin/addarticle',
+          path: '/admin/article/add',
           name: 'AddArticle',
-          component: () => import('../components/admin/article/AddArticle.vue')
+          component: () => import('../components/admin/article/Add.vue')
         },
         {
           path: '/admin/block/list',
           name: 'List',
-          component: () => import('../components/admin/block/list.vue')
+          component: () => import('../components/admin/block/List.vue')
         },
         {
           path: '/admin/block/add',
           name: 'Add',
-          component: () => import('../components/admin/block/add.vue')
+          component: () => import('../components/admin/block/Add.vue')
         },
         {
           path: '/admin/block/edit/:id',
           name: 'EditBlock',
-          component: () => import('../components/admin/block/edit.vue')
+          component: () => import('../components/admin/block/Edit.vue')
         }
       ]
     },

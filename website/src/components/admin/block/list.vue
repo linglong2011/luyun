@@ -51,11 +51,11 @@ export default {
       queryInfo: {
         query: '', // 搜索关键字
         page: 1, // 当前页数
-        pagesize: 3 // 当前每页显示3条数据
+        pagesize: 8 // 当前每页显示3条数据
       },
       // 总页面
       totalpage: 0,
-      // 总用户数
+      // 总数
       total: 0
     }
   },

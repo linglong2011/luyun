@@ -16,7 +16,7 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-import global_ from './plugins/Global' // 引用文件
+import global_ from './plugins/Global' // 引用全局文件
 import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:3000'
 // axios 添加请求拦截器

@@ -6,7 +6,15 @@
     </el-breadcrumb>
     <el-card>
       <el-row>
+        <el-col :span="16">
           <el-button type="primary" @click="goRegister">新增用户</el-button>
+          </el-col>
+        <el-col :span="8">
+          <!-- 搜索 clearable带清空图标按钮的input @clear事件，清空查询关键字，重新获取用户列表-->
+          <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable @clear="getUserList()">
+            <el-button slot="append" icon="el-icon-search" @click="getUserList()"></el-button>
+          </el-input>
+        </el-col>
       </el-row>
       <el-table :data="userList" stripe style="width: 100%">
         <el-table-column type="index" label="#"></el-table-column>
@@ -53,7 +61,7 @@ export default {
       queryInfo: {
         query: '', // 搜索关键字
         page: 1, // 当前页数
-        pagesize: 3 // 当前每页显示2条数据
+        pagesize: 8 // 当前每页显示2条数据
       },
       // 总页面
       totalpage: 0,
