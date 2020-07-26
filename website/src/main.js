@@ -22,7 +22,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 // axios 添加请求拦截器
 axios.interceptors.request.use(config => {
   // console.log(config);
-  config.headers.Authorization = window.sessionStorage.getItem('token')
+  config.headers.Authorization = 'Bearer ' + window.sessionStorage.getItem('token')
   // 在最后必须 return config
   return config
 })
